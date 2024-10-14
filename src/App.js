@@ -3,16 +3,19 @@ import React, { useEffect, useState } from 'react'
 const App = () => {
 
 
-  const [accuracy,setAccuracy]=useState(0);
+  const [accuracy, setAccuracy] = useState(0);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch("api/ml")
-    .then(res=>res.json())
-    .then(data=>{setAccuracy(data.accuracy)})
-  },[])
+      .then(res => res.json())
+      .then(data => { setAccuracy(data.accuracy) })
+  }, [])
 
   return (
-    <div>Accuracy : {accuracy}</div>
+    <>
+
+      <div className=''>Accuracy : {accuracy}</div>
+    </>
   )
 }
 
