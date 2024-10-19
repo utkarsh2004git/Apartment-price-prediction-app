@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { MyCities } from '../helper/Cities';
 import { MyStates } from '../helper/States';
+import { MyLocality } from '../helper/Locality';
+import { My_long_lat } from '../helper/long_lat';
 
 const Home = () => {
+
+
   const [formData, setFormData] = useState({
     state: '',
     city: '',
@@ -20,11 +24,13 @@ const Home = () => {
 
   const states = MyStates;
   const cities = MyCities;
+  const localities = MyLocality;
+  const long_lat=My_long_lat;
 
   const bhkTypes = ['1BHK', '2BHK', '3BHK'];
-  const furnishingOptions = ['Furnished', 'Semi-Furnished', 'Unfurnished'];
-  const yesNoOptions = ['Yes', 'No'];
-  const propertyTypes = ['Apartment', 'Villa'];
+  // const furnishingOptions = ['Furnished', 'Semi-Furnished', 'Unfurnished'];
+  // const yesNoOptions = ['Yes', 'No'];
+  // const propertyTypes = ['Apartment', 'Villa'];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,6 +38,38 @@ const Home = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+
+  const handleStateChange = (e) => {
+    const { value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      state: value,
+      city: '', 
+      locality: '', 
+    }));
+  };
+
+  const handleCityChange =async (e) => {
+    const { value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      city: value,
+      locality: '', 
+    }));
+    console.log(formData.city)
+    
+  };
+  
+  const handleLocalityChange =async (e) => {
+    const { value } = e.target;
+     setFormData((prevData) => ({
+      ...prevData,
+      locality: value,
+    }));
+     const { LONGITUDE, LATITUDE } = long_lat[value];
+    console.log(formData.locality," long : ",LONGITUDE," lat : ",LATITUDE)
   };
 
   const handleSubmit = (e) => {
@@ -65,7 +103,7 @@ const Home = () => {
                 <select
                   name="state"
                   value={formData.state}
-                  onChange={handleChange}
+                  onChange={handleStateChange}
                   className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
                 >
                   <option value="">Select State</option>
@@ -83,7 +121,7 @@ const Home = () => {
                 <select
                   name="city"
                   value={formData.city}
-                  onChange={handleChange}
+                  onChange={handleCityChange}
                   className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
                   disabled={!formData.state}
                 >
@@ -99,16 +137,23 @@ const Home = () => {
 
               {/* Locality Input */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Locality</label>
-                <input
-                  type="text"
-                  name="locality"
-                  value={formData.locality}
-                  onChange={handleChange}
-                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
-                  placeholder="Enter Locality"
-                />
-              </div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Locality</label>
+            <select
+              name="locality"
+              value={formData.locality}
+              onChange={handleLocalityChange}
+              className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
+              disabled={!formData.city}
+            >
+              <option value="">Select Locality</option>
+              {formData.city &&
+                localities[formData.city].map((locality,index) => (
+                  <option key={index} value={locality}>
+                    {locality}
+                  </option>
+                ))}
+            </select>
+          </div>
 
               {/* BHK Type Dropdown */}
               <div className="mb-4">
@@ -152,117 +197,6 @@ const Home = () => {
                   className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
                   placeholder="Enter Age in years"
                 />
-              </div>
-            </div>
-            <div className='w-1/2'>
-
-
-              {/* Parking Dropdown */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Parking</label>
-                <select
-                  name="parking"
-                  value={formData.parking}
-                  onChange={handleChange}
-                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
-                >
-                  <option value="">Do you want parking?</option>
-                  {yesNoOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Security Dropdown */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Security</label>
-                <select
-                  name="security"
-                  value={formData.security}
-                  onChange={handleChange}
-                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
-                >
-                  <option value="">Do you want security?</option>
-                  {yesNoOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Lift Dropdown */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Lift</label>
-                <select
-                  name="lift"
-                  value={formData.lift}
-                  onChange={handleChange}
-                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
-                >
-                  <option value="">Do you want a lift?</option>
-                  {yesNoOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Furnishing Status Dropdown */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Furnishing Status</label>
-                <select
-                  name="furnishingStatus"
-                  value={formData.furnishingStatus}
-                  onChange={handleChange}
-                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
-                >
-                  <option value="">Select Furnishing Status</option>
-                  {furnishingOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Balcony Dropdown */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Balcony</label>
-                <select
-                  name="balcony"
-                  value={formData.balcony}
-                  onChange={handleChange}
-                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
-                >
-                  <option value="">Do you want a balcony?</option>
-                  {yesNoOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Property Type Dropdown */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
-                <select
-                  name="propertyType"
-                  value={formData.propertyType}
-                  onChange={handleChange}
-                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
-                >
-                  <option value="">Select Property Type</option>
-                  {propertyTypes.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
-                  ))}
-                </select>
               </div>
             </div>
           </div>

@@ -1,22 +1,32 @@
 export const MyCities = {
-    Maharashtra: ['Mumbai', 'Pune', 'Nagpur', 'Nashik', 'Thane'],
-
-    Karnataka: ['Bengaluru', 'Mysuru', 'Hubli', 'Mangalore', 'Belgaum'],
-
-    Delhi: ['New Delhi', 'Dwarka', 'Saket', 'Rohini', 'Karol Bagh'],
-
-    'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli', 'Salem'],
-
-    'Uttar Pradesh': ['Lucknow', 'Kanpur', 'Varanasi', 'Agra', 'Noida'],
-
-    Rajasthan: ['Jaipur', 'Jodhpur', 'Udaipur', 'Kota', 'Bikaner'],
-
-    Gujarat: ['Ahmedabad', 'Surat', 'Vadodara', 'Rajkot', 'Bhavnagar'],
-
-    'West Bengal': ['Kolkata', 'Howrah', 'Durgapur', 'Asansol', 'Siliguri'],
-
-    'Madhya Pradesh': ['Bhopal', 'Indore', 'Gwalior', 'Jabalpur', 'Ujjain'],
-
-    Punjab: ['Amritsar', 'Ludhiana', 'Jalandhar', 'Patiala', 'Bathinda'],
-  };
+  'Karnataka': ['Bangalore', 'Mysore', 'Mangalore', 'Hubli', 'Dharwad'],
+  'Uttar Pradesh': ['Ghaziabad', 'Lucknow', 'Kanpur', 'Noida', 'Agra'],
+  'West Bengal': ['Kolkata', 'Siliguri', 'Howrah', 'Durgapur', 'Asansol'],
+  'Kerala': ['Kochi', 'Kollam', 'Thiruvananthapuram', 'Kottayam', 'Malappuram'],
+  'Rajasthan': ['Jaipur', 'Udaipur', 'Jodhpur', 'Ajmer', 'Bikaner'],
+  'Punjab': ['Mohali', 'Amritsar', 'Ludhiana', 'Patiala', 'Jalandhar'],
+  'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai', 'Tirunelveli', 'Salem'],
+  'Maharashtra': ['Mumbai', 'Pune', 'Nagpur', 'Aurangabad'],
+  'Odisha': ['Bhubaneswar', 'Cuttack', 'Berhampur', 'Sambalpur', 'Rourkela'],
+  'Gujarat': ['Vadodara', 'Ahmedabad', 'Surat', 'Rajkot', 'Gandhinagar'],
+  'Telangana': ['Secunderabad', 'Hyderabad', 'Warangal', 'Karimnagar', 'Khammam'],
+  'Andhra Pradesh': ['Vijayawada', 'Visakhapatnam', 'Tirupati', 'Kakinada', 'Nellore'],
+  'Haryana': ['Gurgaon', 'Faridabad', 'Hisar', 'Panchkula', 'Ambala'],
+  'Bihar': ['Patna', 'Gaya', 'Muzaffarpur', 'Bhagalpur', 'Darbhanga'],
+  'Chhattisgarh': ['Raipur', 'Bhilai', 'Durg', 'Bilaspur', 'Korba'],
+  'Assam': ['Guwahati', 'Dibrugarh', 'Silchar', 'Jorhat', 'Nagaon'],
+  'Jammu and Kashmir': ['Srinagar', 'Jammu', 'Anantnag', 'Rajouri', 'Udhampur'],
+  'Himachal Pradesh': ['Shimla', 'Dharamshala', 'Kullu', 'Mandi', 'Solan'],
+  'Uttarakhand': ['Dehradun', 'Haridwar', 'Nainital', 'Rudrapur', 'Roorkee'],
+  'Tripura': ['Agartala', 'Belonia', 'Ambassa', 'Udaipur', 'Dharmanagar'],
+  'Nagaland': ['Kohima', 'Dimapur', 'Mokokchung', 'Wokha', 'Tuensang'],
+  'Manipur': ['Imphal', 'Thoubal', 'Churachandpur', 'Senapati', 'Tamenglong'],
+  'Mizoram': ['Aizawl', 'Lunglei', 'Siaha', 'Champhai', 'Serchhip'],
+  'Arunachal Pradesh': ['Itanagar', 'Naharlagun', 'Pasighat', 'Tawang', 'Ziro'],
+  'Goa': ['Panaji', 'Margao', 'Mapusa', 'Ponda', 'Quepem'],
+  'Sikkim': ['Gangtok', 'Namchi', 'Gyalshing', 'Mangan', 'Jorethang'],
+  'Jharkhand': ['Ranchi', 'Jamshedpur', 'Dhanbad', 'Bokaro', 'Hazaribagh'],
+  'Chandigarh': ['Chandigarh'],
+  'Puducherry': ['Puducherry'], 
+}
   
