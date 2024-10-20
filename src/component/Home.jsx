@@ -11,15 +11,8 @@ const Home = () => {
     state: '',
     city: '',
     locality: '',
-    bhkType: '',
-    size: '',
-    age: '',
-    parking: '',
-    security: '',
-    lift: '',
-    furnishingStatus: '',
-    balcony: '',
-    propertyType: '',
+    LONGITUDE:'',
+    LATITUDE:'',
   });
 
   const states = MyStates;
@@ -70,23 +63,22 @@ const Home = () => {
     }));
      const { LONGITUDE, LATITUDE } = long_lat[value];
     console.log(formData.locality," long : ",LONGITUDE," lat : ",LATITUDE)
+    setFormData((prevData) => ({
+      ...prevData,
+      LONGITUDE:LONGITUDE,
+      LATITUDE:LATITUDE
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form data submitted:', formData);
-    setFormData({ state: '',
+    setFormData({     state: '',
       city: '',
       locality: '',
-      bhkType: '',
-      size: '',
-      age: '',
-      parking: '',
-      security: '',
-      lift: '',
-      furnishingStatus: '',
-      balcony: '',
-      propertyType: '',})
+      LONGITUDE:'',
+      LATITUDE:'',
+})
     // You can send the formData to your Flask API here
   };
 
