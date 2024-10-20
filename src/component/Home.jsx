@@ -8,12 +8,16 @@ const Home = () => {
 
 
   const [formData, setFormData] = useState({
+    postedBy: '',
+    underConstruction: '',
+    rera: '',
     state: '',
     city: '',
     locality: '',
     LONGITUDE: '',
     LATITUDE: '',
-    BHK: '',
+    bhkNo: '',
+    bhkOrRk: '',
     size: '',
     ready_to_move: '',
     resale: ''
@@ -76,16 +80,35 @@ const Home = () => {
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form data submitted:', formData);
+    try {
+      const response = await fetch('http://localhost:5000/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
     setFormData({
+      postedBy: '',
+      underConstruction: '',
+      rera: '',
       state: '',
       city: '',
       locality: '',
       LONGITUDE: '',
       LATITUDE: '',
       BHK: '',
+      bhkNo: '',
+      bhkOrRk: '',
       size: '',
       ready_to_move: '',
       resale: ''
@@ -159,40 +182,87 @@ const Home = () => {
             </div>
 
             <div className='w-1/2'>
-              {/* BHK Type Dropdown */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">BHK Type</label>
-                <select
-                  name="BHK"
-                  value={formData.BHK}
-                  onChange={handleChange}
-                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
-                >
-                  <option value="" disabled>Select BHK Type</option>
-                  {bhkTypes.map((bhk, index) => (
-                    <option key={index} value={bhk}>
-                      {bhk}
-                    </option>
-                  ))}
-                </select>
+              <div className='flex gap-3 justify-between'>
+                {/* BHK Type Dropdown */}
+                <div className="mb-4 w-1/3">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">BHK Type</label>
+                  <select
+                    name="BHK"
+                    value={formData.BHK}
+                    onChange={handleChange}
+                    className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
+                  >
+                    <option value="" disabled>Select BHK Type</option>
+                    {bhkTypes.map((bhk, index) => (
+                      <option key={index} value={bhk}>
+                        {bhk}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                {/* Posted By Dropdown */}
+                <div className="mb-4 w-1/3">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">BHK Type</label>
+                  <select
+                    name="postedBy"
+                    value={formData.postedBy}
+                    onChange={handleChange}
+                    className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
+                  >
+                    <option value="" disabled>Posted By</option>
+                    <option value={1}>Owner</option>
+                    <option value={2}>Dealer</option>
+                    <option value={3}>Builder</option>
+                  </select>
+                </div>
+                {/* RERA Dropdown */}
+                <div className="mb-4 w-1/3">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">RERA Verified</label>
+                  <select
+                    name="rera"
+                    value={formData.rera}
+                    onChange={handleChange}
+                    className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
+                  >
+                    <option value="" disabled>Select</option>
+                    <option value={1}>Yes</option>
+                    <option value={0}>No</option>
+                  </select>
+                </div>
               </div>
 
-              {/* Size Input */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Size (sq ft)</label>
-                <input
-                  type="number"
-                  name="size"
-                  value={formData.size}
-                  onChange={handleChange}
-                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
-                  placeholder="Enter Size in sq ft"
-                />
+              <div className='flex gap-3'>
+
+                {/* Size Input */}
+                <div className="mb-4 w-1/2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Size (sq ft)</label>
+                  <input
+                    type="number"
+                    name="size"
+                    value={formData.size}
+                    onChange={handleChange}
+                    className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
+                    placeholder="Enter Size in sq ft"
+                  />
+                </div>
+                <div className="mb-4 w-1/2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Under Construction</label>
+                  <select
+                    name="underConstruction"
+                    value={formData.underConstruction}
+                    onChange={handleChange}
+                    className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
+                  >
+                    <option value="" disabled >Select</option>
+                    <option value={1}>Yes</option>
+                    <option value={0}>No</option>
+                  </select>
+                </div>
               </div>
 
-              <div className='flex justify-between'>
+              <div className='flex justify-between gap-3'>
                 {/* ReadyToMove Input */}
-                <div className="mb-4 w-2/5">
+                <div className="mb-4 w-1/2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Ready to move</label>
                   <select
                     name="ready_to_move"
@@ -207,7 +277,7 @@ const Home = () => {
                 </div>
 
                 {/* Resale Input */}
-                <div className="mb-4 w-2/5">
+                <div className="mb-4 w-1/2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Resale</label>
                   <select
                     name="resale"
@@ -225,7 +295,6 @@ const Home = () => {
           </div>
 
           <div>
-
             <button
               type="submit"
               className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-800 focus:outline-none focus:ring focus:ring-blue-300 disabled:opacity-50 cursor-pointer"
