@@ -182,6 +182,21 @@ const Home = () => {
             </div>
 
             <div className='w-1/2'>
+
+              {/* Size Input */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Size (sq ft)</label>
+                <input
+                  type="number"
+                  name="size"
+                  value={formData.size}
+                  onChange={handleChange}
+                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
+                  placeholder="Enter Size in sq ft"
+                />
+              </div>
+
+
               <div className='flex gap-3 justify-between'>
                 {/* BHK Type Dropdown */}
                 <div className="mb-4 w-1/3">
@@ -202,7 +217,7 @@ const Home = () => {
                 </div>
                 {/* Posted By Dropdown */}
                 <div className="mb-4 w-1/3">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">BHK Type</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Posted By</label>
                   <select
                     name="postedBy"
                     value={formData.postedBy}
@@ -232,20 +247,7 @@ const Home = () => {
               </div>
 
               <div className='flex gap-3'>
-
-                {/* Size Input */}
-                <div className="mb-4 w-1/2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Size (sq ft)</label>
-                  <input
-                    type="number"
-                    name="size"
-                    value={formData.size}
-                    onChange={handleChange}
-                    className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
-                    placeholder="Enter Size in sq ft"
-                  />
-                </div>
-                <div className="mb-4 w-1/2">
+                <div className="mb-4 w-1/3">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Under Construction</label>
                   <select
                     name="underConstruction"
@@ -258,11 +260,9 @@ const Home = () => {
                     <option value={0}>No</option>
                   </select>
                 </div>
-              </div>
 
-              <div className='flex justify-between gap-3'>
                 {/* ReadyToMove Input */}
-                <div className="mb-4 w-1/2">
+                <div className="mb-4 w-1/3">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Ready to move</label>
                   <select
                     name="ready_to_move"
@@ -277,7 +277,7 @@ const Home = () => {
                 </div>
 
                 {/* Resale Input */}
-                <div className="mb-4 w-1/2">
+                <div className="mb-4 w-1/3">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Resale</label>
                   <select
                     name="resale"
@@ -290,7 +290,12 @@ const Home = () => {
                     <option value={0}>No</option>
                   </select>
                 </div>
+
               </div>
+
+
+
+
             </div>
           </div>
 
