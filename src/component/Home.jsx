@@ -16,8 +16,7 @@ const Home = () => {
     locality: '',
     LONGITUDE: '',
     LATITUDE: '',
-    bhkNo: '',
-    bhkOrRk: '',
+    BHK: '',
     size: '',
     ready_to_move: '',
     resale: ''
@@ -79,7 +78,6 @@ const Home = () => {
     }));
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form data submitted:', formData);
@@ -107,8 +105,6 @@ const Home = () => {
       LONGITUDE: '',
       LATITUDE: '',
       BHK: '',
-      bhkNo: '',
-      bhkOrRk: '',
       size: '',
       ready_to_move: '',
       resale: ''
@@ -207,7 +203,7 @@ const Home = () => {
                     onChange={handleChange}
                     className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
                   >
-                    <option value="" disabled>Select BHK Type</option>
+                    <option value="" disabled>Select</option>
                     {bhkTypes.map((bhk, index) => (
                       <option key={index} value={bhk}>
                         {bhk}
