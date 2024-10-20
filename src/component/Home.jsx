@@ -13,6 +13,11 @@ const Home = () => {
     locality: '',
     LONGITUDE:'',
     LATITUDE:'',
+    BHK:'',
+    size:'',
+    ready_to_move:'',
+    resale:''
+
   });
 
   const states = MyStates;
@@ -20,7 +25,7 @@ const Home = () => {
   const localities = MyLocality;
   const long_lat=My_long_lat;
 
-  const bhkTypes = ['1BHK', '2BHK', '3BHK'];
+  const bhkTypes = ['1BHK', '2BHK', '3BHK','4BHK','1RK'];
   // const furnishingOptions = ['Furnished', 'Semi-Furnished', 'Unfurnished'];
   // const yesNoOptions = ['Yes', 'No'];
   // const propertyTypes = ['Apartment', 'Villa'];
@@ -70,16 +75,21 @@ const Home = () => {
     }));
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form data submitted:', formData);
-    setFormData({     state: '',
+    setFormData({     
+      state: '',
       city: '',
       locality: '',
       LONGITUDE:'',
       LATITUDE:'',
+      BHK:'',
+      size:'',
+      ready_to_move:'',
+      resale:''
 })
-    // You can send the formData to your Flask API here
   };
 
   return (
@@ -98,7 +108,7 @@ const Home = () => {
                   onChange={handleStateChange}
                   className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
                 >
-                  <option value="">Select State</option>
+                  <option value="" disabled>Select State</option>
                   {states.map((state) => (
                     <option key={state} value={state}>
                       {state}
@@ -117,7 +127,7 @@ const Home = () => {
                   className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
                   disabled={!formData.state}
                 >
-                  <option value="">Select City</option>
+                  <option value="" disabled>Select City</option>
                   {formData.state &&
                     cities[formData.state].map((city) => (
                       <option key={city} value={city}>
@@ -137,7 +147,7 @@ const Home = () => {
               className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
               disabled={!formData.city}
             >
-              <option value="">Select Locality</option>
+              <option value="" disabled>Select Locality</option>
               {formData.city &&
                 localities[formData.city].map((locality,index) => (
                   <option key={index} value={locality}>
@@ -151,14 +161,14 @@ const Home = () => {
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-1">BHK Type</label>
                 <select
-                  name="bhkType"
-                  value={formData.bhkType}
+                  name="BHK"
+                  value={formData.BHK}
                   onChange={handleChange}
                   className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
                 >
-                  <option value="">Select BHK Type</option>
-                  {bhkTypes.map((bhk) => (
-                    <option key={bhk} value={bhk}>
+                  <option value="" disabled>Select BHK Type</option>
+                  {bhkTypes.map((bhk,index) => (
+                    <option key={index} value={bhk}>
                       {bhk}
                     </option>
                   ))}
@@ -178,17 +188,34 @@ const Home = () => {
                 />
               </div>
 
-              {/* Age Input */}
+              {/* ReadyToMove Input */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Age (years)</label>
-                <input
-                  type="number"
-                  name="age"
-                  value={formData.age}
+                <label className="block text-sm font-medium text-gray-700 mb-1">BHK Type</label>
+                <select
+                  name="ready_to_move"
+                  value={formData.ready_to_move}
                   onChange={handleChange}
                   className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
-                  placeholder="Enter Age in years"
-                />
+                >
+                  <option value="" disabled>Ready to Move</option>
+                    <option value={1}>Yes</option>
+                    <option value={0}>No</option>
+                </select>
+              </div>
+
+              {/* Resale Input */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">BHK Type</label>
+                <select
+                  name="resale"
+                  value={formData.resale}
+                  onChange={handleChange}
+                  className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-gray-500"
+                >
+                  <option value="" disabled>Ready to Move</option>
+                    <option value={1}>Yes</option>
+                    <option value={0}>No</option>
+                </select>
               </div>
             </div>
           </div>
@@ -198,7 +225,8 @@ const Home = () => {
             <button
               type="submit"
               className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-800 focus:outline-none focus:ring focus:ring-blue-300 disabled:opacity-50"
-              disabled={!formData.state || !formData.city || !formData.bhkType}
+              disabled={!formData.state || !formData.city || !formData.locality || !formData.BHK || !formData.size || !formData.resale
+                || !formData.ready_to_move}
             >
               Submit
             </button>
