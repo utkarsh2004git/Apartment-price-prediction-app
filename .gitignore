@@ -4,7 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
-/api/*
+
+/api/venv/*
+!/api/venv/model_Creation
+!/api/venv/api.py
 
 # testing
 /coverage
@@ -22,4 +25,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-BoostingModel.pkl
+
