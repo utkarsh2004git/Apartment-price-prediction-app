@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { MyCities } from '../helper/Cities';
 import { MyStates } from '../helper/States';
-import { MyLocality } from '../helper/Locality';
+import MyLocality from "../helper/Locality"
 import { My_long_lat } from '../helper/long_lat';
+import Swal from 'sweetalert2';
 
 const Home = () => {
 
@@ -78,6 +79,14 @@ const Home = () => {
     }));
   };
 
+  const myAlert =(data)=>{
+    Swal.fire({
+      title: "Predicted Price",
+      text: data.predicted_price.toFixed(3)+" Lacks.",
+      icon: "success"
+    });
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form data submitted:', formData);
@@ -91,7 +100,9 @@ const Home = () => {
       });
 
       const data = await response.json();
-      console.log(data);
+
+      myAlert(data)
+      
     } catch (error) {
       console.error('Error:', error);
     }
