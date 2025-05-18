@@ -24,3 +24,4 @@ This is a full-stack web application that predicts apartment prices based on use
 | Others      | Pandas, NumPy, Joblib |
 
 ---
+
